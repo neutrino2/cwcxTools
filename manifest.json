@@ -1,0 +1,15 @@
+﻿{
+  "name": "财务处",
+  "version": "1.2",
+  "background": { "scripts": ["background.js"] },
+  "permissions": [
+	"tabs",
+    "http://cwcx.hfut.edu.cn/baobiao/Queue/*"
+  ],
+  "browser_action": {
+	"default_icon": "icon38.png"
+    ,
+    "name": "财务处"
+  },
+  "manifest_version": 2
+}
