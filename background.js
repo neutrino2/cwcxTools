@@ -38,14 +38,26 @@ function tabListener(tabId, changeInfo, tab){//
 	  }
   }
 }
-chrome.browserAction.onClicked.addListener(function(tab) {
+chrome.extension.onRequest.addListener(
+  function(request, sender, sendResponse) {
+  
+    console.debug(sender.tab ?
+                "from a content script:" + sender.tab.url :
+                "from the extension");
+	console.debug(request.name);
+	console.debug(request.pass);
+	console.debug(request.no);
+    
+  });
+ console.log('Starting Extension');
+/* chrome.browserAction.onClicked.addListener(function(tab) {
 	if(!chrome.tabs.onUpdated.hasListener(tabListener))
 	{chrome.tabs.onUpdated.addListener(tabListener)}
-//	if(!chrome.windows.onCreated.hasListener(winListener))
-//	{chrome.windows.onCreated.addListener(winListener)}
-//	if(tab.url.indexOf("http://cwcx.hfut.edu.cn/baobiao/Queue/")==0)
-//	{chrome.tabs.remove(tab.id);}
+	// if(!chrome.windows.onCreated.hasListener(winListener))
+	// {chrome.windows.onCreated.addListener(winListener)}
+	// if(tab.url.indexOf("http://cwcx.hfut.edu.cn/baobiao/Queue/")==0)
+	// {chrome.tabs.remove(tab.id);}
 	chrome.tabs.create({"url":"http://cwcx.hfut.edu.cn/baobiao/Queue/QueueController.aspx"});
-  });
+  }); */
 
 
