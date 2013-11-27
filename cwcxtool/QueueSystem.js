@@ -67,12 +67,12 @@ var time8_00 = temp.getTime();
 var oDiv;
 var btn;
 var bclicked = false
-var clickcount = 20;
+var clickcount = 10;
 var timeouthandle=null;
 function fastclick(){
 	btn.click();
 	clickcount--;
-	if(i>0)setTimeout(fastclick,400);
+	if(clickcount>0)setTimeout(fastclick,400);
 }
 
 function showtime(){
@@ -86,8 +86,8 @@ function showtime(){
 
 	if (server - time8_00 >= 0 && server - time8_00 < 2000){
 		if(bclicked == false){	
-			//fastclick();
-			btn.click();
+			fastclick();
+			//btn.click();
 			bclicked = true;
 		}else{
 			
@@ -136,12 +136,12 @@ function main(){
 	if (tdiv){
 		return;
 	}
-	// var list = document.getElementsByName("DropDownList1");
-	// if(list.length>0){
+	var list = document.getElementsByName("DropDownList1");
+	if(list.length>0){
 		// document.getElementById("PrintButton").click();
-		// chrome.extension.sendRequest({source: "QueueSystem",info:"finish"});
-		// return;
-	// }
+		chrome.extension.sendRequest({source: "QueueSystem",info:"finish"});
+		return;
+	}
 	chrome.extension.sendRequest({source: "QueueSystem"},function (response){
 		var type=response.type;
 		//console.debug(type);
