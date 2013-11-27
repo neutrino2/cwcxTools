@@ -5,6 +5,7 @@
 var loginName="";
 var loginPw = "";
 var no=0;
+var delay_s=0;
 var decircle=true;
 function tabListener(tabId, changeInfo, tab){//
   if(tab.url.indexOf("http://cwcx.hfut.edu.cn") != 0)
@@ -47,16 +48,17 @@ chrome.extension.onRequest.addListener(
 		loginName=request.uid;
 		loginPw=request.pwd;
 		no = request.no;
-		
+		delay_s = request.delay;
 		switch(no){
 			case 0:str = "综合报销";break;
 			case 1:str = "开票";break;
 			case 2:str = "基建报销";break;
 			case 3:str = "借款薪酬";break;
 		}		
-		bconfirm = confirm("即将开始自动化取号流程确认后不要再使用浏览器\r\n账户："+loginName+
+		bconfirm = confirm("即将开始自动化取号流程,确认后不要再使用浏览器\r\n账户："+loginName+
 		"  密码："+loginPw+
-		"  取号类型："+str);
+		"  取号类型："+str+
+		"  延时："+delay_s);
 		if(bconfirm){
 			chrome.tabs.create({"url":"http://cwcx.hfut.edu.cn/"});
 			addlisten();
@@ -69,8 +71,10 @@ chrome.extension.onRequest.addListener(
 		}
 		chrome.tabs.create({"url":"http://cwcx.hfut.edu.cn/"});
 	}else if(request.source=="QueueSystem"){
-		if(request.info == "finish"){chrome.tabs.onUpdated.removeListener(tabListener);}
-		else{sendResponse({type:no});}
+		if(request.info == "finish"){
+			chrome.tabs.onUpdated.removeListener(tabListener);
+		}
+		else{sendResponse({type:no,delay:delay_s});}
 	}
   });
  

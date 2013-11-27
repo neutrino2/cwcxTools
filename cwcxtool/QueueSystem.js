@@ -57,12 +57,8 @@ recongnize();
 
 var timeDiff
 var sendTime,t2
-var temp = new Date();
-temp.setHours(8);
-temp.setMinutes(0);
-temp.setSeconds(00);
-temp.setMilliseconds(00);
-var time8_00 = temp.getTime();
+
+var time8_00 = 0;
 
 var oDiv;
 var btn;
@@ -137,16 +133,26 @@ function main(){
 		return;
 	}
 	var list = document.getElementsByName("DropDownList1");
-	if(list.length>0){
+ 	if(list.length>0){
 		// document.getElementById("PrintButton").click();
 		chrome.extension.sendRequest({source: "QueueSystem",info:"finish"});
 		return;
-	}
-	chrome.extension.sendRequest({source: "QueueSystem"},function (response){
-		var type=response.type;
-		//console.debug(type);
+	} 
+ 	chrome.extension.sendRequest({source: "QueueSystem"},function (response){
+		var type = response.type;
+		delay_s = response.delay;
+		if(delay_s<0 || delay_s>60){
+			delay_s=0;
+		}
+		var temp = new Date();
+		temp.setHours(8);
+		temp.setMinutes(0);
+		temp.setSeconds(delay_s);
+		temp.setMilliseconds(00);
+		time8_00 = temp.getTime();
+		//console.debug(type+"  "+temp);
 		btn = document.getElementById('Repeater1_ctl0'+type+'_ImageButton1');
-	});
+	}); 
 	
 	var staDate = new Date();
 	
