@@ -2,22 +2,16 @@
 <html>
   <head>
 	<title>Start Page</title>
-
 	<script src="popup.js"></script>
   </head>
   <body>
-  <form>
-	用户名:<INPUT TYPE="text" NAME="" id="name" value = ""><br>
+	用户名:<INPUT TYPE="text" NAME="" id="name" value = "" tabindex=1><br>
 	密码:<INPUT TYPE="text" NAME="" id="pass" value = ""><br>
-	<input type="radio" name="r1" value="0"  checked="checked"/> 综合报销
-	<br />
-	<input type="radio" name="r1" value="1" /> 开票
-	<br />
-	<input type="radio" name="r1" value="2" /> 基建报销
-	<br />
+	<input type="radio" name="r1" value="0"  checked="checked"/> 综合报销<br>
+	<input type="radio" name="r1" value="1" /> 开票<br>
+	<input type="radio" name="r1" value="2" /> 基建报销<br>
 	<input type="radio" name="r1" value="3" /> 借款薪酬<br>
-	延时:<INPUT TYPE="text" NAME="" id="delay" value = "0">
-	</form>
+	延时(s):<INPUT TYPE="text" NAME="" id="delay" value = "0">
 	<input type = "button" value = "确定" id = "confirm">
   </body>
 </html>

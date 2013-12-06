@@ -63,7 +63,7 @@ var time8_00 = 0;
 var oDiv;
 var btn;
 var bclicked = false
-var clickcount = 10;
+var clickcount = 50;
 var timeouthandle=null;
 function fastclick(){
 	btn.click();
@@ -132,11 +132,11 @@ function main(){
 	if (tdiv){
 		return;
 	}
-	var list = document.getElementsByName("DropDownList1");
+	var list = document.getElementById("DropDownList1");
  	if(list.length>0){
 		// document.getElementById("PrintButton").click();
-		chrome.extension.sendRequest({source: "QueueSystem",info:"finish"});
-		return;
+		//chrome.extension.sendRequest({source: "QueueSystem",info:"finish"});
+		//return;
 	} 
  	chrome.extension.sendRequest({source: "QueueSystem"},function (response){
 		var type = response.type;
@@ -150,7 +150,7 @@ function main(){
 		temp.setSeconds(delay_s);
 		temp.setMilliseconds(00);
 		time8_00 = temp.getTime();
-		//console.debug(type+"  "+temp);
+		console.debug(type+"  "+temp);
 		btn = document.getElementById('Repeater1_ctl0'+type+'_ImageButton1');
 	}); 
 	
